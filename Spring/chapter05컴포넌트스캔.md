@@ -16,7 +16,7 @@ public class test{
 ComponentScan(지정자)
 ```java
 @Configuration
-@ComponentScan(basPackages={"test"},excludeFilters=@Filter(type=FilterType.ASPECTJ,pattern="test.*Dao"))
+@ComponentScan(basePackages={"test"},excludeFilters=@Filter(type=FilterType.ASPECTJ,pattern="test.*Dao"))
 public class configClass{
     @Bean
     @Qualifier("test2")
