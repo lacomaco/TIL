@@ -82,6 +82,7 @@ public class DatabaseConfiguration {
         //매퍼파일이 여러개라면 * _ 등을 이용해서 처리합니다. 이경우엔 resource의 mapper 폴더에 있는 모든 폴더에서 sql- 로 시작하는 xml을
         //매퍼 파일로 간주하여 전부 가져옵니다.
 		sqlSessionFactoryBean.setMapperLocations(applicationContext.getResource("classpath:/mapper/**/sql-*.xml"));
+		sqlSessionFactoryBean.setConfiguration(mybatisConfig());
 		return sqlSessionFactoryBean.getObject();
 	}
 	
@@ -89,5 +90,40 @@ public class DatabaseConfiguration {
 	public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
 		return new SqlSessionTemplate(sqlSessionFactory);
 	}
+
+	@Bean 
+	//propertis 설정 추가. 마이바티스
+	@ConfigurationProperties(prefix="mybatis.configuration")
+	public org.apache.ibatis.session.Configuration mybatisConfig(){
+		//마이바티스 설정 넣어줌.
+		return new org.apache.ibatis.session.Configuration();
+	}
 }
 ```
+
+파일 처리를 위한 Bean 설정
+
+1. 아파치 Common Fileupload 이용한 CommonMultipartResolver
+2. 서블릿 3.0 이상의 StandardServletMultipartResolver
+
+commons-io
+
+commons-fileupload 그레들이나 메이븐에 설치해야함
+
+```java
+@Bean
+public CommonMultipartResolver multipartResolver(){
+	CommonsMultipartResolver commonsMultipartResolver=new CommonsMultipartResolver();
+	commonsMultipartResolver.setDefaultEncoding("UTF-8");
+	commonsMultipartResolver.setMaxUploadSizePerFiles(5*1024*1024); //업로드 되는 파일 크기 ( 5mb)
+
+	return commonsMultipartResolver;
+}
+
+```
+@SpringBootApplication(exclide={MultipartAutoConfiguration.class})
+
+설정.
+
+파일은 <input type="file" multiple="multiple"> 로 보내느것이 가능. <form enctype="mulitpart/form-data"> 여야만함.
+
