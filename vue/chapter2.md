@@ -1,3 +1,24 @@
+```html
+    <div id="app">
+        <p>{{message}}</p>
+        <ol>
+            <li v-for="item in list">{{item}}</li>
+        </ol>
+        <button v-on:click="handleClick">Click</button>
+        <input v-model="message">
+        <p v-if="show">Hello Vue.js!</p>
+        
+        <button v-on:click="show=!show">변경하기</button>
+        <transition>
+            <p v-if="show">Hello. Vue.js</p>
+        </transition>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.common.dev.js"></script>
+    <script src="main.js">
+```
+
+```js
 var app = new Vue({
     el:'#app',
     data:{
@@ -49,3 +70,7 @@ var app = new Vue({
     }
 
 });
+
+```
+
+![vuejsLifeCycle](./images/vuejsLifeCycle.jpg)

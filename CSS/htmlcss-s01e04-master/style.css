@@ -1,0 +1,108 @@
+/* CSS Reset */
+*{
+    margin:0;
+    padding:0;
+}
+
+li{
+    list-style-type:none;
+}
+
+a{
+    text-decoration: none;
+    color:inherit;
+}
+/* CSS RESET */
+
+body{
+    background-image:url(images/bg.png);
+}
+
+.wrapper{
+    background-position: center;
+    background-image : url(images/rope.png);
+    width:800px;
+    margin: 0 auto 100px;
+}
+
+.header{
+    text-align: center;
+}
+
+
+.logo{
+    background-image : url(images/logo.png);
+    width:450px;
+    height:140px;
+    display:inline-block;
+    text-indent: -999999px;
+    /* Image Replacement 기법, IR 기법 */
+}
+
+.menu{
+    width:300px;
+    margin:30px auto;
+    color:#666;
+}
+
+.menu li{
+    margin-bottom: 5px;
+}
+
+.menu li a{
+    display: block;
+    border:2px solid #666;
+    padding:5px 0;
+}
+
+.menu li a:hover{
+    color:orange;
+}
+
+.section{
+    background-image:url(images/wood.png);
+    margin:50px 0;
+    padding:30px;
+    border:10px solid #3f2217;
+    border-radius: 10px;
+    box-shadow: 0px 0px 30px 10px rgba(0,0,0,0.6);
+    color : antiquewhite;
+}
+
+/* line-height : 주면 텍스트에 빈공간에 들어감 그래서 h1을 감싸고 있는 랩퍼랑 line-height이 같으면 중앙정렬이됨*/
+.section h1{
+    margin-bottom:20px;
+    font-size:100px;
+    line-height: 174px;
+    font-family: 'arial';
+    background-image:url(images/animal01.png);
+    background-repeat:no-repeat;
+    background-position: right center;
+}
+
+.section p{
+    line-height: 1.6;
+}
+
+.footer{
+    background-color: #7d410d;
+    color:pink;
+    text-align: center;;
+    border-bottom:10px solid rgb(0,0,0,0.4);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.footer p{
+    padding:20px 0;
+    margin: 0 auto;
+}
+
+.footer::before{
+    content:' ';
+    background-image:url(images/ground.png);
+    background-repeat:repeat-x;
+    display:block;
+    height:50px;
+}
+
