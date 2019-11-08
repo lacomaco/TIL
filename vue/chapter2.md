@@ -273,3 +273,73 @@ this.$set(this.list,0,{id:4,name:'melongs'});
 $set을 통해서 객체가 변경되면 리액티브로 감지하여 즉각적으로 값을 변경하는 것이 가능하다.
 
 # section 11
+
+요소의 위치 , 높이 속성등을 알기 위해서는 DOM에 직접 접근해야한다.
+
+$el , $ref ($refs) 를 통해 접근하는것이 가능하다..
+
+$el은 루트 요소의 DOM을 가리킨다. $el과 일치하는 값에 vue가 바인딩된다.
+
+루트 요소가 아닌 것은 $ref을 통해 접근한다.
+
+```html
+<p ref="hello">Hello</p>
+```
+```js
+new Vue({
+    el:'#app',
+    mounted:function(){
+        console.log(this.$refs.hello);
+    }
+});
+```
+
+html에 ref로 hello를 줬고
+
+Vue 코드에선 this.$refs.hello를 통해 접근하는것이 가능하다.
+
+여기서 $ref로 접근해서 값을 바꾸면 가상 DOM이 아닌 진짜 DOM을 조작하게된다.
+
+Vue는 가상 돔을 통해서 데이터를 바꾸고 조작하기 때문에, 진짜 DOM을 조작하고 업데이트를 통해 모든게 다시 렌더링 된다면 ,
+
+값이 또 변해있을 것이다. 가상돔을 더 우선시 하기 때문이다.
+
+# 12 section 템플릿을 제어하는 디렉티브들
+
+v-pre(템플릿 생략하기),v-once(한번만 바인딩),v-text(Mustache 대신),v-html : html 태그 그대로, v-cloak : 인스턴스 준비끝나면 제거.
+
+v-pre 예제
+
+```html
+<a v-bind:href="melongs/gg" v-pre>
+{{message}}
+</a>
+```
+결과물
+```html
+<a href="melongs/gg">{{message}}</a>
+```
+
+{{message}}가 바인딩 되지 않고 있는 그대로 반영된다.
+
+v-once => 템플릿을 단 한번만 컴파일 하고 이후에는 바인딩을 하지 않습니다.
+
+v-text : mustache처럼 동작함
+
+v-html : 
+
+innerHTML 처럼, html이 바인딩됩니다.
+
+```html
+<span v-html="message">
+```
+
+결과물
+
+```html
+<span> <strong>hi</strong> </span>
+```
+
+v-clock : 인스턴스 준비가 끝나면 사라짐 .
+
+렌더링이 느릴때 유용함

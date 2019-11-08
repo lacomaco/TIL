@@ -10,17 +10,9 @@
 
 <body>
     <div id="app">
-        <ul>
-            {{name}}
-            <input v-model="name">
-            <button v-on:click="doAdd">몬스터를 추가하자.</button>
-            <li v-for="(item, index) in list" v-bind:key="item.id">
-                ID.{{item.id}} {{item.name}} HP.{{item.hp}}
-                <button v-on:click="doRemove(index)">몬스터 제거하기.</button>
-                <button v-on:click="changeName(index)">이름을 바군당</button>
-            </li>
-            <button v-on:click="attack">몬스터 척살 간다</button>
-        </ul>
+        <button v-on:click="handleClick">Count up</button>
+        <button v-on:click="show=!show">표시/비표시</button>
+        <span ref="count" v-if="show">0</span>
     </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.common.dev.js"></script>
