@@ -10,23 +10,21 @@
 
 <body>
     <div id="app">
-        <p>{{message}}</p>
-        <ol>
-            <li v-for="item in list">{{item}}</li>
-        </ol>
-        <button v-on:click="handleClick">Click</button>
-        <input v-model="message">
-        <p v-if="show">Hello Vue.js!</p>
-
-        <button v-on:click="show=!show">변경하기</button>
-        <transition>
-            <p v-if="show">Hello. Vue.js</p>
-        </transition>
+        <ul>
+            {{name}}
+            <input v-model="name">
+            <button v-on:click="doAdd">몬스터를 추가하자.</button>
+            <li v-for="(item, index) in list" v-bind:key="item.id">
+                ID.{{item.id}} {{item.name}} HP.{{item.hp}}
+                <button v-on:click="doRemove(index)">몬스터 제거하기.</button>
+                <button v-on:click="changeName(index)">이름을 바군당</button>
+            </li>
+            <button v-on:click="attack">몬스터 척살 간다</button>
+        </ul>
     </div>
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.common.dev.js"></script>
     <script src="main.js">
-        
     </script>
 </body>
 
