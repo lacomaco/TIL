@@ -1,0 +1,22 @@
+img{
+    opacity: 1;
+    transition:opacity 1s;
+}
+
+img.hide{
+    opacity: 0;
+}
+
+.box{
+    height:3000px;
+    width:100px;
+    background-color:orange;
+}
+
+.test{
+    position:fixed;
+}
+
+.compact{
+    position: absolute;
+}
