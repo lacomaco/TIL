@@ -1,9 +1,5 @@
 import React,{Fragment} from 'react';
-import './App.css';
-import MyComponent from './MyComponent';
-import MyComponentClass from './MyComponentClass';
-import Counter from './Counter';
-import Say from './Say';
+import EventPractice from './EventPractice';
 /*
 컴포넌트 생성방식 2가지 , 1. 함수형 컴포넌트 , 2. 클래스형 컴포넌트
 아래의 방식은 함수형 컴포넌트 선언 방식
@@ -32,7 +28,7 @@ props.children , 태그 사이 내용을 보여주는 , 태그 사이의 값을 
 function App() {
   const name='리액트'
   return (
-    <Counter />
+    <EventPractice/>
   );
 }
 
