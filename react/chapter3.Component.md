@@ -285,14 +285,16 @@ prevState는 이전 State , props 는 현 재 props를 의미합니다.
 
 ### this.setState가 끝나고 다른 특정작업을 실행하기
 
-값이 변경되고 바로 다음 값을 하도록 콜백 함수를 등록할 수 있습니다. onClick의 2번째 파라미터로 보통 넣습니다.
+값이 변경되고 바로 다음 값을 하도록 콜백 함수를 등록할 수 있습니다. setState의 2번째 파라미터로 보통 넣습니다.
 
 ```js
 onClick={()=>{
-    ...
-},()=>{//2번째 매개변수입니다.
-    console.log('CALLBACK!');
-}};
+this.setState({
+state ...
+},()=>{
+second parameter ... 
+}
+}
 ```
 
 ### 함수형에서 State 쓰는법 , useState
