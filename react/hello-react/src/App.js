@@ -10,6 +10,5 @@ class App extends Component {
       <IterationSample/>
   );
   }
-  
 }
 export default App;
