@@ -1,0 +1,16 @@
+// 변수 사용법 $이름 : 값
+$red:#fa5252;
+$orange:#fd7e14;
+$yellow:#fcc419;
+$green:#40c057;
+$blue:#339af0;
+$indigo:#5c7cfa;
+$violet:#7950f2;
+
+// mixin 만들기, mixin은 css 함수처럼, 사용되는 함수입니다. css 스타일을 생성합니다.
+@mixin square($size){
+    $calculated:32px * $size;
+    width:$calculated;
+    height:$calculated;
+}
+

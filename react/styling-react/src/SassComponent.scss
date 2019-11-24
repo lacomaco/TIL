@@ -1,0 +1,64 @@
+@import './styles/utils';
+
+//주목해야할점은 sass는 클래스내에 클래스를 정의할 수 잇습니다. 예를들어 .box .inbox{} =>
+/*
+.box{
+    .inbox{
+
+    }
+}
+
+는 같은 클래스코드입니다.
+*/
+.SassComponent{
+    display:flex;
+    
+    .box{
+        background:red;
+        cursor:pointer;
+        transition:all 0.3s ease-in;
+        /*
+        다시 이상한 문법인 &가 나왔습니다. 이것이 의미하는것은
+        클래스 box와 클래스 red가 같이 사용될때 구동되는 클래스임을 의미합니다.
+        */
+        &.red{
+            background:$red;
+            // square mixin을 사용할때에는 @include를 사용합니다.
+            @include square(1);
+        }
+
+        &.orange{
+            background: $orange;
+            @include square(2);
+        }
+
+        &.yellow{
+            background: $yellow;
+            @include square(3);
+        }
+
+        &.green{
+            background: $green;
+            @include square(4);
+        }
+
+        &.blue{
+            background: $blue;
+            @include square(5);
+        }
+
+        &.indigo{
+            background: $indigo;
+            @include square(6);
+        }
+
+        &.violet{
+            background: $violet;
+            @include square(7);
+        }
+
+        &:hover{
+            background:black;
+        }
+    }
+}
