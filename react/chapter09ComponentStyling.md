@@ -212,7 +212,13 @@ temp`hello ${()=>{}} ${ {li:'hi'}} hello hello `
 ```js
 import styled , {css} from 'styled-components';
 ...
-const Box=styled.div`background:black;`;
+// props는 Box 컴포넌트에 들어오는 props를 가져와 확인이 가능합니다.
+const Box=styled.div`background:black; width:${props=>props.widthtrue || '100px'};`;
+
+...
+//usage
+<Box widthtrue="true"/>
+
 ```
 
 에서 styled.css 함수에 , css 스타일값을 넣는것 이라고 보면 된다.tagged template 이기 때문에 함수가 들어가도 잘 전달됩니다.
@@ -220,3 +226,5 @@ const Box=styled.div`background:black;`;
 만약 template literal 이였다면 함수가 아닌 funciton 이라는 객체가 들어가서 안됩니다.
 
 이 styled-components 라이브러리를 다루는 부분은 필요할때 책을 참고하는게 나아보입니다.
+
+styled-components를 사용하는 이유는 이러한 props 를 이용해서 조건부 스타일링 하기 편해서 쓰는것 같다.

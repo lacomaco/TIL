@@ -146,7 +146,7 @@ class TestComponent extends Component{
         super(props);
     }
     render(){
-        cosnt {name,children} = this.props;
+        const {name,children} = this.props;
         return (
             <div>{name} + {children}</div>
         )

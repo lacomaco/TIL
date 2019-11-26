@@ -161,6 +161,23 @@ class Point:
             return other
         if other.x is None:  # <4>
             return self
+        
+        if self.x == other.x and self.y != other.y:
+            return self.__class__(None,None,self.a,self.b)
+        
+        # p1 + p2 = p3, 기울기 = (p1.y - p2.y)/(p1.x - p2.x);
+        # 기울 기를 구해 p3.x p3.y를 구해야한다. 어떻게? 책에 나오는 공식은 p3.x = 기울기 - p1.x -p2.x , p3.y = 기울기 * (p1.x-p3.x) - p1.y
+        if self.x != other.x:
+            s= (self.y-other.y)/(self.x-other.x)
+            px=s**2 - self.x - other.x
+            py=s*(self.x-px) - self.y
+            return self.__class__(px,py,self.a,self.b)
+        
+        if self==other:
+            s=(3*self.x**2+self.a)/2*self.y
+            px=s**2-2*self.x
+            py=s*(self.x-px)-self.y
+            return self.__class__(px,py,self.a,self.b)
         # end::source3[]
 
         # Case 1: self.x == other.x, self.y != other.y
@@ -177,7 +194,9 @@ class Point:
         # s=(3*x1**2+a)/(2*y1)
         # x3=s**2-2*x1
         # y3=s*(x1-x3)-y1
-
+        
+        if self==other and self.y==0*self.x:
+            return self.__class__(None,None,self.a,self.b)
         raise NotImplementedError
 
 
