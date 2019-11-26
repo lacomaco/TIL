@@ -138,9 +138,9 @@ ref의 이림은
 
 에서 this.input2의 input2가 ref가 된다. 이를 props로 넘겨주었다고 말한것이다.
 
-props로 정확히 언제 어떻게 넘겨준지는 아직 이해가 안가지만 input 태그또한 하나의 컴포넌트로 준다면
+props로 정확히 언제 어떻게 넘겨준지는 아직 이해가 안가지만 input 태그또한 하나의 컴포넌트로 본다면
 
-ref props에 우리 컴포넌트의 this.input2에 ref를 넣고 이를  {}  자바스크립트 표현식으로 넘겨서 어찌어찌 props로 넘어간것 같다. 자세한건 더 연구해야한다
+input 컴포넌트의 props에 함수를 주는데, 함수는 this.input2에 ref를 넣고 일을 수행한다.
 
 this.input2 , this.input을 통해서 ref를 통제할 수 있다.
 
