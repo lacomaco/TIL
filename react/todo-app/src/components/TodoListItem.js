@@ -10,6 +10,14 @@ import './TodoListItem.scss';
 
 class TodoListItem extends Component{
 
+     shouldComponentUpdate(nextProps,nextState){
+         if(nextProps!==this.props||nextState !==this.state){
+             return true;
+         }
+         console.log('false');
+         return false;
+     }
+
     render(){
         const {text,checked,id} = this.props.todo;
         const onToggle = this.props.onToggle;
