@@ -40,6 +40,10 @@ useEffect의 첫번째 인자는 실행할 콜백 함수이고
 
 두번째 인자에 빈 배열을 넣으면 , 감시할 상태값이 없음으로 mount 시에만 해당 콜백이 실행되고 종료됩니다.
 
+useEffect의 첫번재 인자로는 async 함수를 넣을 수 없습니다. 왜냐하면 useEffect는 뒷정리 함수를 리턴하는걸 기대하고 있기 때문이다.
+
+Promise의 리턴값은 promise이고 async는 promise의 sugerSyntax임으로 promise를 리턴한다. 따라서 안된다
+
 ```js
 import React,{useState,useEffect} from 'react';
 
@@ -264,6 +268,18 @@ export default Average;
 useEffect처럼 첫번째 인자에 콜백함수를 넣고, 두번째 인자에 감시할 state 값을 넣어주면
 감시할 state값이 변경되면 콜백함수를 통해 연산을 수행할 수 있습니다. 이런 식으로 최적화를 할 수 잇습니다.
 
+그렇다면 책에서는 useMemo가 무엇인지 설명이 안나왔다. useMemo가 참조하는 의존성 값이 변경되었을 경우에만 메모리제이션을 바꾸게된다.
+
+useMemo는 렌더링 도중에만 실행됩니다. 사이드 이펙트를 이루게 하고 싶으면 useEffect를 사용해야 합니다.
+
+https://ko.reactjs.org/docs/hooks-reference.html#useeffect
+## 정리
+useMemo와 useEffect의 공통점 : 둘다 re-render시에 발생한다.
+useMemo와 useEffect의 차이점 : useMemo는 값을 변경하지만 , re-render를 일으키지 않는다. 반면 useState는 값을 re-render를 일으킨다.
+useEffect는 rending이 되고 실행되지만 useMemo는 rending 되기전에 실행된다.
+
+참고
+https://stackoverflow.com/questions/56347639/react-useeffect-vs-usememo-vs-usestate
 # useCallback
 
 useMemo와 비슷한 함수입니다. 렌더링 성능 최적화하는 상황에서 쓰입니다.
