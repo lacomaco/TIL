@@ -22,6 +22,7 @@
                     first:Math.ceil(Math.random() * 9),
                     second : Math.ceil(Math.random() * 9 ),
                     input:'',
+                    latest_answer:0,
                 };
             }
 
@@ -34,11 +35,14 @@
                 e.preventDefault();
                 console.log('confirm');
                 if(this.state.first * this.state.second === parseInt(this.state.input)){
+                    let first2=Math.ceil(Math.random()*9);
+                    let second2=Math.ceil(Math.random()*9);
                     this.setState({...this.state,
                     result:'딩동댕',
                     input:'',
                     first:Math.ceil(Math.random()*9),
-                    second:Math.ceil(Math.random()*9)
+                    second:Math.ceil(Math.random()*9),
+                    latest_answer: this.state.first*this.state.second,
                     });
 
                 }else{
@@ -55,7 +59,7 @@
                         <form>
                             <input type="number" value={this.state.input} onChange={this.inputChange}/>
                             <button onClick={this.confirm}>입력!</button>
-                            <div>{this.state.result}</div>
+                            <div>{this.state.latest_answer}{this.state.result}</div>
                         </form>
                     </div>
                 );
