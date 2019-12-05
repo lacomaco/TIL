@@ -25,20 +25,25 @@ webpack-cli
 # webPack 설정 확인하기
 
 ```js
+// 파일 위치 지정하기 위해서 노드의 path 기능을 활용한다.
 const path = require('path');
 
 
 module.exports = {
+    //웹팩 이름을 지정함, 프로그램엔 지장이 없음
     name:'word-relay-setting',
     mode:'development',//실서비스에서는 production으로 변경해야함.
     devtool:'eval',
+    //resolve : 풀다(문제를) , extensions에 들어간 확장자들을 웹팩이 인지해 하나의 팩으로 싸게된다.
     resolve : {
         extensions:['.js','.jsx']
     },
+    // entry에는 웹팩의 최상단 파일을 app에 지정한다.
     entry:{
         //입력
         app:['./client'],
     },
+    //module : module의 rules에 로더하는 babel-loader와 options에 여러 바벨들을 부착해 react가 컴파일 될 수 있도록 한다.
     module:{
         rules:[{
             test:/\.jsx?/,
@@ -49,6 +54,7 @@ module.exports = {
             },
         }],
     },
+    //웹팩의 결과물은 output의 path에 filename으로 나온다.
     output:{
         //출력
         path : path.join(__dirname,'dist'), //
