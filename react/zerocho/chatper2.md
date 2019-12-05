@@ -44,16 +44,32 @@ module.exports = {
         app:['./client'],
     },
     //module : module의 rules에 로더하는 babel-loader와 options에 여러 바벨들을 부착해 react가 컴파일 될 수 있도록 한다.
+    /*
+    presets : (기본값 이라는 의미)
+    plugins : ()
+    */
     module:{
         rules:[{
             test:/\.jsx?/,
             loader: 'babel-loader',
-            options:{
-                presets:['@babel/preset-env','@babel/preset-react'],
+            
+            options:{//바벨 로더에 대한 옵션이다. preset의미는 : plugins들의 모음,
+                presets:[
+                    //이 프리셋은,  구형 브라우저 지원하는 설정이 가능.
+                    ['@babel/preset-env',{
+                        targets:{
+                            // 최근 2개 버전의 크롬만 지원함.
+                            browsers:['last 2 chrome versions'],
+                        }
+                        //프리셋 안의 프리셋은 배열로 넣고 첫번째 인자에 프리셋의 이름, 두번째에는 프리셋의 프리셋의 설정을 넣는다.
+                    }],
+                    '@babel/preset-react'],
                 plugins:['@babel/plugin-proposal-class-properties'],
             },
         }],
     },
+
+    plugins : [], //추가적인 프리셋 설정 
     //웹팩의 결과물은 output의 path에 filename으로 나온다.
     output:{
         //출력
@@ -62,3 +78,99 @@ module.exports = {
     },
 };
 ```
+
+
+# webpeck-server-dev-server --hot
+
+설치해야하는것 
+
+1. "webpack-dev-server": "^3.9.0"
+2. "react-hot-loader": "^4.12.18",
+
+설정해야하는것 
+
+1. 루트 jsx 
+
+```js
+const React = require('react');
+const ReactDom = require('react-dom');
+const {hot} = require('react-hot-loader/root');
+
+const WordRelay = require('./WordRelay.jsx');
+const Hot = hot(WordRelay);
+
+ReactDom.render(<Hot />,document.querySelector('#root'));
+```
+
+react-hot-loader/root에서 hot 함수를 가져와, 렌더링 하고싶은 jsx을 인수에 넣어 새로운 jsx를 얻는다. 그리고 그것을 렌더링한다.
+
+2. 
+
+```js
+const path = require('path');
+
+
+module.exports = {
+    name:'word-relay-setting',
+    mode:'development',//실서비스에서는 production으로 변경해야함.
+    devtool:'eval',
+    resolve : {
+        extensions:['.js','.jsx']
+    },
+    entry:{
+        //입력
+        app:['./client'],
+    },
+    module:{
+        rules:[{
+            test:/\.jsx?/,
+            loader: 'babel-loader',
+            options:{
+                presets:['@babel/preset-env','@babel/preset-react'],
+                plugins:['@babel/plugin-proposal-class-properties','react-hot-loader/babel'],
+            },
+        }],
+    },
+    output:{
+        //출력
+        path : path.join(__dirname,'dist'), //
+        filename:'app.js',
+    },
+};
+```
+
+plugins에 react-hot-loader/babel이 생겼음
+
+3. package.json 
+
+```json
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --hot"
+  },
+```
+
+4. web-pack-dev server는 webpack의 outputs를 app.js로 강제한다. 
+
+```html
+<!-- ./dist/app.js -> app.js -->
+    <script src="./app.js">
+
+    </script>
+```
+
+아니면 webpack output에 publicPath를 넣어줘야한다.
+
+```js
+output:{
+    path : path.join(__dirname,'dist'), 
+    filename:'app.js',
+    publicPath:'/dist'
+}
+```
+
+path와 publicPath 차이점
+
+path : 실제 경로
+publicPath : 가상 경로
+
