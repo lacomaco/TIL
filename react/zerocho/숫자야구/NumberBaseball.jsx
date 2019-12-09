@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useRef} from 'react';
 import Try from './Try';
 
 function getNumbers(){
@@ -16,8 +16,10 @@ const NumberBaseball = ()=>{
     const [value,setValue] = useState('');
     const [answer,setAnswer] = useState(getNumbers());
     const [tries,setTries] = useState([]);
+    const input = useRef();
     const onSubmitForm = (e)=>{
         e.preventDefault();
+        input.current.focus();
         if(value === answer.join('')){
             setResult('홈런!');
             setTries((prevTries)=>{
@@ -62,7 +64,7 @@ const NumberBaseball = ()=>{
         <>
             <h1>{result}</h1>
             <form onSubmit={onSubmitForm}>
-                <input maxLength={4} value={value} onChange={onChangeInput}/>
+                <input ref = {input}maxLength={4} value={value} onChange={onChangeInput}/>
             </form>
             <div>
                 시도 : {tries.length}

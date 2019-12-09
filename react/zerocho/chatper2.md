@@ -12,7 +12,7 @@
 react-dom ,react ( react 쓰기위해서 필요해 !)
 ### babel
 @babel/preset-env 
-@babele/preset-react
+@babel/preset-react
 babel-loader ( 이걸로 컴파일 할꺼임 !)
 @babel/core
 @babel/plugin-proposal-class-properties 
