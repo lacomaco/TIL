@@ -4,5 +4,7 @@ const ReactDom = require('react-dom');
 const {hot} = require('react-hot-loader/root');
 
 import ResponseCheck  from './ResponseCheck';
-const Hot = hot(ResponseCheck);
-ReactDom.render(<Hot />,document.querySelector('#root'));
+import RSP from './RSP';
+import Rotto from'./Rotto';
+const Hot = hot(RSP);
+ReactDom.render(<Rotto />,document.querySelector('#root'));
