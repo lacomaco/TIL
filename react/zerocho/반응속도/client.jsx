@@ -6,5 +6,6 @@ const {hot} = require('react-hot-loader/root');
 import ResponseCheck  from './ResponseCheck';
 import RSP from './RSP';
 import Rotto from'./Rotto';
-const Hot = hot(RSP);
-ReactDom.render(<Rotto />,document.querySelector('#root'));
+import TicTacToe from './TicTacToe';
+const Hot = hot(TicTacToe);
+ReactDom.render(<Hot />,document.querySelector('#root'));
