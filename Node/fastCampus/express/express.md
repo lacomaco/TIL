@@ -77,4 +77,5 @@ app.use('/img',express.static(path.join(__dirname,'img')));
 4. REST API
 https://meetup.toast.com/posts/92
 
-5. 
+5. Caching Layers
+redis 로 캐싱 레이어 만듬
