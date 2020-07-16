@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    <!-- DOM 요소로 " 추가 " 될 때가 enter 이며 , DOM 요소에서 " 제거 " 될 떄에가 leave 이다.-->
+    .v-enter-active, .v-leave-active{
+      transition: opacity 1s;
+    }
+
+    .v-enter, .v-leave-to{
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <button v-on:click="show=!show">트랜지션 변경하기</button>
+    <transition>
+      <div v-show="show">트랜지션을 하고 싶습니다.</div>
+    </transition>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

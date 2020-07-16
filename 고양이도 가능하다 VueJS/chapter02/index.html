@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    [v-cloak]{
+      display:none;
+    }
+  </style>
+</head>
+<body>
+  <div id="app" v-cloak>
+    <!--Mustache 기법은 " 텍스트 " 콘텐츠를 위한 기법이다. 태그의 속성으로는 사용할 수 없고, 태그의 속성으로 사용하고 싶다면 v-bind 디렉티브를 사용해야한다. -->
+    <p>{{message.value}}</p>
+    <p>{{message.value.length}}</p>
+    <p>{{list[2]}}</p>
+    <p>{{list[num]}}</p>
+    <input type="text" v-model="message.value"/>
+    <div v-bind:text-content.prop="message.value"></div>
+    <div v-bind:scroll-top.prop="scroll"></div>
+    <p>{{count}}</p>
+    <button v-on:click="increment">숫자 올림</button>
+    <p v-bind:class="{child:isChild, 'is-active':isActive}">Text</p>
+    <p v-bind:style="{color:textColor,backgroundColor:bgColor}">Text</p>
+
+    <img v-bind="item"/>
+
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <circle cx="100" cy="75" v-bind:r="radius" fill="lightpink"/>
+    </svg>
+    <input type="range" min="0" max="100" v-model="radius"/>
+
+    <div v-if="ok">v-if으로 조건문 출력하기</div>
+    <div v-show="ok">v-show 으로 조건 출력하기</div>
+
+    <template v-if="ok">
+      <div>이것은 템플릿입니다</div>
+      <div>안녕하세요</div>
+    </template>
+
+    <div v-if="ok===true" key="content-visible">
+      content visible
+    </div>
+
+    <div v-else key="content-not-visible">
+      content not visible
+    </div>
+
+    <ol>
+      <li v-for="item in monsters" v-bind:style="{color:item.color}" v-bind:key="item.id">{{item.name}}</li>
+    </ol>
+
+    <ol>
+      <li v-for="(item,index) in monsters" v-bind:style="{color:item.color}" v-bind:key="item.id" v-if="index%2==0">
+        {{index}}
+      </li>
+    </ol>
+
+    <ol>
+      <li v-for="(item,key,index) in singleMonster"> {{index}} {{key}} {{item}} </li>
+    </ol>
+
+    <button v-on:click="addNewMonster">hello Monster</button>
+    <button v-on:click="changeMonster">Change Monster</button>
+    <p ref="hello">babo</p>
+    <button v-on:click="sayEl">ZZZZZZZ</button>
+
+    <a v-bind:href="url" v-pre>zz</a>
+
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="main.js"></script>
+</html>

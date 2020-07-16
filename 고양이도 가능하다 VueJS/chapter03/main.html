@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <button v-on:click="handleClick($event,item)">눌러눌러</button>
+    <input v-bind:value="message" v-on:input="handleInput"/>
+    <p>{{message}}</p>
+    <div v-on:dragstart="handler" draggable>
+      드래그
+    </div>
+    <div v-on:dragstart="handler" draggable>
+      드래그
+    </div>
+    <textarea v-model="message"></textarea>
+    <label>
+      <input type="checkbox" v-model="val" true-value="yesyesyes" false-value="nonono">
+      {{val}}
+    </label>
+    <label>
+      <input type="checkbox" v-model="box" value="A">A
+    </label>
+    <label>
+      <input type="checkbox" v-model="box" value="B">B
+    </label>
+    <label>
+      <input type="checkbox" v-model="box" value="C">C
+    </label>
+
+    <select v-model="select">
+      <option disabled="disabled">선택</option>
+      <option value="a">A</option>
+      <option value="b">B</option>
+      <option value="c">C</option>
+    </select>
+    <p>Select {{select}}</p>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="main.js"></script>
+</html>

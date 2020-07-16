@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    [v-cloak]{
+      display:none;
+    }
+  </style>
+</head>
+<body>
+  <div id="app" v-cloak>
+    <p>{{width}} {{halfWidth}}</p>
+    <p>{{halfPoint.width}} {{halfPoint.height}}</p>
+    <input v-model.number="halfWidth">
+    <button v-on:click="toHalf">half</button>
+    <hr/>
+    <ol>
+      <li v-for="item in over200" v-bind:key="item.id">{{item.price}}</li>
+    </ol>
+  <hr/>
+  <button v-on:click="listChange">List Change Button</button>
+  <hr/>
+  <p>{{zzTest|under('gg')}}</p>
+  <hr/>
+  <div v-homemadedirective="list">example</div>
+  <hr/>
+  <button v-on:click="video1=true">재생</button>
+  <button v-on:click="video1=false">정지</button>
+  <video v-video="video1" src="https://youtu.be/cyBNe_QB_LU"></video>
+  <button v-on:click="video2=true">재생</button>
+  <button v-on:click="video2=false">정지</button>
+  <video v-video="video2" src="https://youtu.be/cyBNe_QB_LU"></video>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="main.js"></script>
+</html>
